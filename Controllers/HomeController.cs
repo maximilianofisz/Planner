@@ -45,7 +45,7 @@ namespace Planner.Controllers
                     if (viewModel.EditableItem.Id <= 0)
                     {
 
-                        viewModel.EditableItem.Date = DateTime.Now;
+                        
                         db.Insert<ToDoItem>(viewModel.EditableItem);
                     }
                     else
