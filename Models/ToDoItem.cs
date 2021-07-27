@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
-
+using Dapper;
+using Dapper.Contrib.Extensions;
 namespace Planner.Models
-{
+{   
+    [Table("toDo")]
     public class ToDoItem
     {
         public int Id { get; set; }
