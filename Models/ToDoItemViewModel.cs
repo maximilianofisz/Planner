@@ -16,7 +16,7 @@ namespace Planner.Models
             using (var db = DbHelper.GetConnection())
             {
                 this.EditableItem = new ToDoItem();
-                this.ToDoItems = db.Query<ToDoItem>("SELECT * FROM toDo ORDER BY Date DESC").ToList();
+                this.ToDoItems = db.Query<ToDoItem>("SELECT * FROM toDo ORDER BY Date ASC").ToList();
             }
         }
 
