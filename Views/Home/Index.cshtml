@@ -2,13 +2,6 @@
 @model Planner.Models.ToDoItemViewModel
 @{
     ViewData["Title"] = "Index";
-
-
-
-
-
-
-
 }
 
 
@@ -23,8 +16,14 @@
 
 
 <body style="margin: 20px;">
+
     <div class="today">
-        <h1>Today</h1>
+        <div>
+            <a href="Home/History">History</a>
+        </div>
+        <div>
+            <h1>Today</h1>
+        </div style="margin-top:20px">
         <table class="table table-striped table-bordered table-hover" style="max-width: 600px;">
             <tr>
 
@@ -85,7 +84,7 @@
 
         </table>
     </div>
-    <div class="tomorrow">
+    <div class="tomorrow" style="margin-top:30px">
         <h1>Tomorrow</h1>
         <table class="table table-striped table-bordered table-hover" style="max-width: 600px;">
             
