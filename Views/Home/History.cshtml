@@ -1,0 +1,63 @@
+﻿@model Planner.Models.ToDoItemViewModel;
+@{
+    ViewData["Title"] = "History";
+}
+
+<html>
+<head>
+    <title> Planner - History</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+</head>
+
+<body style="margin: 20px">
+
+    <div>
+        <a href="~/Home">Home</a>
+        <h1>
+
+            History
+
+            <a href="/Home/ClearHistory" onclick="return confirm('Are you sure? This will permanently erase all data from before today.');" class="btn btn-sm btn-danger">Clear history</a>
+        </h1>
+    </div>
+
+
+        <table class="table table-striped table-bordered table-hover" style="max-width: 400px;">
+            @foreach (var item in Model.ToDoItems)
+            {
+
+
+
+                <tr>
+                    <td>
+                        @item.Title
+                    </td>
+
+
+                    <td class="text-right">
+                        @item.Date
+                    </td>
+                </tr>
+
+            }
+
+
+
+
+
+
+        </table>
+
+</body>
+</html>
+<style>
+    .floatLeft{
+        float: left;
+    }
+    .floatRight{
+        float: right;
+    }
+</style>
+

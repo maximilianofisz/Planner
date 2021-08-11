@@ -74,5 +74,19 @@ namespace Planner.Controllers
                 return RedirectToAction("Index");
             }
         }
+        public IActionResult History()
+        {
+            ToDoItemViewModel viewModel = new ToDoItemViewModel();
+            return View("History", viewModel);
+        }
+        public IActionResult ClearHistory()
+        {
+            ToDoItemViewModel viewModel = new ToDoItemViewModel();
+            viewModel.ClearHistory();
+            return View("History", viewModel);
+        }
+
+
+
     }
 }

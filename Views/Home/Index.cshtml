@@ -17,44 +17,50 @@
 
 <body style="margin: 20px;">
 
-    <h1>Today</h1>  
+    <div class="today">
+        <div>
+            <a href="Home/History">History</a>
+        </div>
+        <div>
+            <h1>Today</h1>
+        </div style="margin-top:20px">
         <table class="table table-striped table-bordered table-hover" style="max-width: 600px;">
             <tr>
 
                 @using (var form = Html.BeginForm("CreateUpdate", "Home", FormMethod.Post))
                 {
                     <td width="60%">
-                        @*@Html.HiddenFor(model => model.EditableItem.Id)*@
+
                         <div class="input-group">
-                            @*@Html.TextBoxFor(model => model.EditableItem.Title, new { @class = "form-control" })*@
-                            <input asp-for = "@Model.EditableItem.Title" class="form-control" />
+
+                            <input asp-for="@Model.EditableItem.Title" class="form-control" />
                         </div>
                     </td>
 
                     <td>
                         <div>
-                        <input type="datetime-local" asp-for="@Model.EditableItem.Date"/>
+                            <input type="datetime-local" asp-for="@Model.EditableItem.Date" />
 
                         </div>
                     </td>
 
                     <td>
                         <div class="input-group-append">
-                            
+
                             <button type="submit" class=" btn btn-success">@(Model.EditableItem.Id > 0 ? "Update" : "Add")</button>
                         </div>
                     </td>
-                        @Html.ValidationSummary()
-                        }
+                    @Html.ValidationSummary()
+                }
 
 
 
 
-                </tr>
-                @foreach (var item in Model.ToDoItems)
+            </tr>
+            @foreach (var item in Model.ToDoItems)
+            {
+                if (item.Date.Day == System.DateTime.Now.Day)
                 {
-
-
                     <tr>
                         <td>
                             <input type="checkbox" checked="@item.IsDone" onclick="window.location.href='/Home/ToggleIsDone/@item.Id';" />
@@ -71,12 +77,53 @@
                         </td>
 
                     </tr>
-                 }
-            
+                }
+
+
+            }
+
         </table>
+    </div>
+    <div class="tomorrow" style="margin-top:30px">
+        <h1>Tomorrow</h1>
+        <table class="table table-striped table-bordered table-hover" style="max-width: 600px;">
+            
+            @foreach (var item in Model.ToDoItems)
+            {
+                if (item.Date.Day == System.DateTime.Now.Day + 1)
+                {
+                    <tr>
+                        <td>
+                            <input type="checkbox" checked="@item.IsDone" onclick="window.location.href='/Home/ToggleIsDone/@item.Id';" />
+                            <a href="Home/Edit/@item.Id">@item.Title</a>
+                        </td>
+
+
+                        <td class="text-right">
+                            @item.Date
+                        </td>
+
+                        <td class="text-center">
+                            <a href="/Home/Delete/@item.Id" onclick="return confirm('Are you sure?');" class="btn btn-sm btn-danger">Delete</a>
+                        </td>
+
+                    </tr>
+                }
+            }
+
+        </table>
+    </div>
 </body>
 </html>
 
 <style>
+    .today
+    {
+        float: left;
+        margin-right: 5%;
+    }
+    .tomorrow {
+        float: left;
 
+    }
 </style>
